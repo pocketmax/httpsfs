@@ -1,4 +1,7 @@
-var fs = require('fs');
+var fs = require('fs'),
+    http = require('http'),
+    https = require('https'),
+    express = require('express');
 
 var options = {
     key: fs.readFileSync('/keys/server.key'),
@@ -8,17 +11,15 @@ var options = {
     rejectUnauthorized: false
 };
 
-var app = require('express').createServer(options, function (req, res) {
+var app = https.createServer(options, app).listen(443,function() {
+    console.log("express up!");
+});
+
+app.get('/', function(req, res){
     if (!req.client.authorized) {
         res.writeHead(401, {"Content-Type": "application/json"});
         res.end('{"status": "denied"}');
     }
-
-});
-
-app.get('/', function(req, res){
     var file = __dirname + '/files' + req.url;
     res.download(file);
 });
-
-app.listen(443);
