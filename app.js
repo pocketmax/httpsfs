@@ -1,5 +1,4 @@
-var express = require('express'),
-    fs = require('fs');
+var fs = require('fs');
 
 var options = {
     key: fs.readFileSync('/keys/server.key'),
@@ -9,7 +8,7 @@ var options = {
     rejectUnauthorized: false
 };
 
-var app = express.createServer(options, function (req, res) {
+var app = require('express').createServer(options, function (req, res) {
     if (!req.client.authorized) {
         res.writeHead(401, {"Content-Type": "application/json"});
         res.end('{"status": "denied"}');
