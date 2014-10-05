@@ -1,7 +1,8 @@
 var fs = require('fs'),
     http = require('http'),
     https = require('https'),
-    express = require('express');
+    express = require('express'),
+    app = express();
 
 var options = {
     key: fs.readFileSync('/keys/server.key'),
@@ -11,7 +12,7 @@ var options = {
     rejectUnauthorized: false
 };
 
-var app = https.createServer(options, app).listen(443,function() {
+var server = https.createServer(options, app).listen(443,function() {
     console.log("express up!");
 });
 
