@@ -6,9 +6,9 @@ var https = require('https'), // module for https
     fs = require('fs');
 
 var options = {
-    key: fs.readFileSync('/home/core/mykeys/httpsfs/server.key'),
-    cert: fs.readFileSync('/home/core/mykeys/httpsfs/server.crt'),
-    ca: fs.readFileSync('/home/core/mykeys/httpsfs/ca.crt'),
+    key: fs.readFileSync('/keys/server.key'),
+    cert: fs.readFileSync('/keys/server.crt'),
+    ca: fs.readFileSync('/keys/ca.crt'),
     requestCert: true,
     rejectUnauthorized: false
 };
